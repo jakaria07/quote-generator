@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #b5e48c 0%, #d9ed92 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;   
+}
+
+.container {
+    max-width: 700px;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    /* color: white; */
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.quote-card {
+    background: #e7c285;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    min-height: 200px;
+}
+
+#quote {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: #2d3748;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+#author {
+    text-align: right;
+    font-size: 1rem;
+    color: #9e2a2b;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+#loading {
+    display: none;
+    text-align: center;
+    color: #540b0e;
+    margin-top: 10px;
+}
+
+/* <!-- Button Styles --> */
+.actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#newQuoteBtn {
+    background: #76c893;
+    color: white;
+}
+
+#copyBtn {
+    background: #f3722c;
+    color: white;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}

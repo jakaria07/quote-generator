@@ -5,6 +5,7 @@ const authorElement = document.getElementById('author');
 const newQuoteButton = document.getElementById('newQuoteBtn');
 const copyQuoteButton = document.getElementById('copyBtn');
 const loadingElement = document.getElementById('loading');
+let quoteHistory = [];
 
 async function fetchQuote() {
     try {
@@ -32,6 +33,17 @@ async function displayNewQuote() {
     // fetching the quote
     const { quote, author } = await fetchQuote();
 
+    // Adding quote to history
+    quoteHistory.push({ quote, author });
+
+    // Keeping history size to max 3
+    if (quoteHistory.length > 3) {
+        quoteHistory = quoteHistory.slice(-3);
+    }
+
+    // Updating history display
+    displayHistory();
+
     // updating the html elements
     quoteElement.textContent = `${quote}`;
     authorElement.textContent = `— ${author}`;
@@ -53,10 +65,13 @@ function copyQuote() {
 
     navigator.clipboard.writeText(fullContent)
         .then(() => {
-            alert('Quote copied to clipboard!');
+            //alert('Quote copied to clipboard!');
+            const originalText = copyQuoteButton.textContent;
             copyQuoteButton.textContent = '✅ Copied!';
+            copyQuoteButton.style.background = '#48bb78';
             setTimeout(() => {
-                copyQuoteButton.textContent = '📋 Copy Quote';
+                copyQuoteButton.textContent = originalText;
+                copyQuoteButton.style.background = '';
             }, 1500);
             //copyQuoteButton.textContent = '📋 Copy Quote';
         }).catch((error) => {
@@ -66,3 +81,16 @@ function copyQuote() {
 }
 
 copyQuoteButton.addEventListener('click', copyQuote);
+
+function displayHistory() {
+    const historyElement = document.getElementById('history');
+
+    const historyHTML = quoteHistory.map((item) => {
+        const { quote, author } = item;
+
+        return `<li>"${quote}" — ${author}</li>`;
+    }).join('');
+
+    // updating the DOM
+    historyElement.innerHTML = historyHTML;
+}
